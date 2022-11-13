@@ -19,6 +19,7 @@ const fetchArcadeStores = async () =>
 
 export default function Home() {
   const [arcadeStores] = createResource(fetchArcadeStores);
+
   return (
     <main>
       <Title>ゲーセンイキタイ</Title>
