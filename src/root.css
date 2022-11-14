@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   background-color: #dadada;
   font-family: Gordita, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
