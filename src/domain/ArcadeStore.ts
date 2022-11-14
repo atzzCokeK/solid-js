@@ -4,16 +4,19 @@ type Args = {
   name: string;
   phoneNumber: string;
   address: string;
+  updatedAt: Date;
 };
 
 export default class ArcadeStore {
-  name: string;
-  address: string;
-  phoneNumber: PhoneNumber;
+  readonly name: string;
+  readonly address: string;
+  readonly phoneNumber: PhoneNumber;
+  readonly updatedAt: Date;
 
-  constructor({ name, phoneNumber, address }: Args) {
+  constructor({ name, phoneNumber, address, updatedAt }: Args) {
     this.name = name;
     this.address = address;
     this.phoneNumber = new PhoneNumber(phoneNumber);
+    this.updatedAt = updatedAt;
   }
 }
