@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #dadada;
-  font-family: Gordita, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-    "Helvetica Neue", sans-serif;
+  background-color: #f8f9f9;
+  font-family: "Gordita";
 }
 
 a {
@@ -13,8 +12,7 @@ a {
 }
 
 main {
-  text-align: center;
-  width: 1100px;
+  width: 50rem;
   margin: 0 auto;
 }
 
