@@ -1,14 +1,7 @@
 import { getDocs, collection } from "firebase/firestore";
-import {
-  createMemo,
-  createResource,
-  createSignal,
-  For,
-  Index,
-  Show,
-} from "solid-js";
+import { createResource, Show } from "solid-js";
 import { Meta, Title } from "solid-start";
-import ArcadeStorePreviewList from "~/components/arcadeStorePreviewList/ArcadeStorePreviewList";
+import ArcadeStorePreviewList from "~/components/domains/ArcadeStore/ArcadeStorePreviewList";
 import { fireStore } from "~/config/firebase";
 import ArcadeStore from "~/domain/ArcadeStore";
 
@@ -23,22 +16,26 @@ const fetchArcadeStores = async () =>
           phoneNumber: doc.phoneNumber,
           address: doc.address,
           updatedAt: doc.updatedAt.toDate(),
+          // FIXME: 仮に入れている
+          tagIds: [1],
         })
     );
 
+// WANT: SUSPENSE使えそう。これonnでも行けそうだな
 export default function Home() {
   const [arcadeStores] = createResource(fetchArcadeStores);
 
   return (
     <main>
       <Title>ゲーセンイキタイ</Title>
-      <h1>ゲーセンイキタイ</h1>
-      <h2>ゲーセン一覧</h2>
+      <h1 class="text-center font-bold">ゲーセンイキタイ</h1>
+      <div> {arcadeStores.loading && "Loading..."}</div>
       <Show
         when={() => {
           const stores = arcadeStores();
           return stores && stores.length > 0;
         }}
+        fallback={<div>loading...</div>}
       >
         <ArcadeStorePreviewList arcadeStores={arcadeStores() ?? []} />
       </Show>
