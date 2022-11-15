@@ -1,7 +1,8 @@
 const regex = new RegExp(/[0 - 9]/g);
 
 export default class PhoneNumber {
-  value: string;
+  private value: string;
+
   constructor(phoneNumber: string) {
     if (phoneNumber.length !== 10 && phoneNumber.length !== 11) {
       throw new Error("wrong phone number by length");
@@ -12,5 +13,9 @@ export default class PhoneNumber {
     }
 
     this.value = phoneNumber;
+  }
+
+  toString() {
+    return this.value;
   }
 }
