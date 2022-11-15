@@ -1,5 +1,7 @@
 // @refresh reload
 import { Suspense } from "solid-js";
+import { BiRegularGame } from "solid-icons/bi";
+
 import {
   A,
   Body,
@@ -29,9 +31,13 @@ export default function Root() {
       <Body>
         <Suspense>
           <ErrorBoundary>
-            <A href="/">Index</A>
-            <A href="/about">ゲーセンイキタイとは？</A>
-            <A href="/by-game-machine">Game Machine</A>
+            <header class="flex sticky top-0 items-center p-5">
+              <A href="/">
+                <BiRegularGame />
+              </A>
+              <A href="/about">ゲーセンイキタイとは？</A>
+              <A href="/by-game-machine">Game Machine</A>
+            </header>
             <Routes>
               <FileRoutes />
             </Routes>
