@@ -21,6 +21,6 @@ export default class ArcadeStore {
     this.address = address;
     this.phoneNumber = new PhoneNumber(phoneNumber);
     this.updatedAt = updatedAt;
-    this.tags = new Set();
+    this.tags = new Set(tagIds.map((tagId) => new Tag(tagId)));
   }
 }
