@@ -1,8 +1,10 @@
 import { getDocs, collection } from "firebase/firestore";
 import { createResource, Show } from "solid-js";
-import { Meta, Title } from "solid-start";
+import { Title } from "solid-start";
 import ArcadeStorePreviewList from "~/components/domains/ArcadeStore/ArcadeStorePreviewList";
+import SelectedTags from "~/components/domains/ArcadeStore/SelectedTags";
 import { fireStore } from "~/config/firebase";
+import { useSelectedTags } from "~/context/selectedTags";
 import ArcadeStore from "~/domain/ArcadeStore";
 
 //  FIXME: これをコンポーネントから分離したい
@@ -17,7 +19,7 @@ const fetchArcadeStores = async () =>
           address: doc.address,
           updatedAt: doc.updatedAt.toDate(),
           // FIXME: 仮に入れている
-          tagIds: [1],
+          tagIds: [1, 2],
         })
     );
 
@@ -28,8 +30,8 @@ export default function Home() {
   return (
     <main>
       <Title>ゲーセンイキタイ</Title>
-      <h1 class="text-center font-bold">ゲーセンイキタイ</h1>
-      <div> {arcadeStores.loading && "Loading..."}</div>
+      <h1 class="text-center font-bold text-[#0CDC73]">Favorite Arcades</h1>
+      <SelectedTags />
       <Show
         when={() => {
           const stores = arcadeStores();
