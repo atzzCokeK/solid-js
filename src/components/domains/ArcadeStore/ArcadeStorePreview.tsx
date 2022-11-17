@@ -1,7 +1,8 @@
 import { Index } from "solid-js";
 import ArcadeStore from "~/domain/ArcadeStore";
+import Tag from "~/domain/Tag";
 import Address from "./Address";
-import CategoryTag from "./CategoryTag";
+import TagView from "./TagView";
 import UpdatedDate from "./UpdatedDate";
 
 const StorePreview = (props: { arcadeStore: ArcadeStore }) => {
@@ -32,8 +33,10 @@ const StorePreview = (props: { arcadeStore: ArcadeStore }) => {
             <Address address={props.arcadeStore.address}></Address>
           </div>
           <ul class="flex list-none space-x-2 w-full flex-wrap leading-7">
-            <Index each={mockCategories}>
-              {(category) => <CategoryTag tagName={category()} />}
+            <Index each={[1, 2, 3]}>
+              {(category) => (
+                <TagView tag={new Tag(category())} method={"ADD"} />
+              )}
             </Index>
           </ul>
         </div>
