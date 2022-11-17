@@ -15,6 +15,10 @@ export default class Tag {
     switch (id) {
       case 1:
         return "メダルゲーム";
+      case 2:
+        return "音ゲー";
+      case 3:
+        return "格ゲー";
       default:
         return undefined;
     }
