@@ -15,6 +15,7 @@ import {
   Title,
 } from "solid-start";
 import "./root.css";
+import { SelectedTagsProvider } from "./context/selectedTags";
 
 export default function Root() {
   return (
@@ -29,21 +30,23 @@ export default function Root() {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body>
-        <Suspense>
-          <ErrorBoundary>
-            <header class="flex sticky top-0 items-center p-5">
-              <A href="/">
-                <BiRegularGame />
-              </A>
-              <A href="/about">ゲーセンイキタイとは？</A>
-              <A href="/by-game-machine">Game Machine</A>
-            </header>
-            <Routes>
-              <FileRoutes />
-            </Routes>
-          </ErrorBoundary>
-        </Suspense>
-        <Scripts />
+        <SelectedTagsProvider>
+          <Suspense>
+            <ErrorBoundary>
+              <header class="flex sticky top-0 items-center p-5">
+                <A href="/">
+                  <BiRegularGame />
+                </A>
+                <A href="/about">ゲーセンイキタイとは？</A>
+                <A href="/by-game-machine">Game Machine</A>
+              </header>
+              <Routes>
+                <FileRoutes />
+              </Routes>
+            </ErrorBoundary>
+          </Suspense>
+          <Scripts />
+        </SelectedTagsProvider>
       </Body>
     </Html>
   );
