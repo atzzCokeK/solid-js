@@ -2,7 +2,6 @@ import { createContext, JSX, useContext } from "solid-js";
 import { Component } from "solid-js";
 import { createStore, Store } from "solid-js/store";
 import Tag from "~/domain/Tag";
-import { uniq } from "lodash";
 
 //  TODO: Setのやつ試してみる
 
@@ -24,7 +23,7 @@ const SelectedTagsProvider: Component<{ children: JSX.Element }> = (props) => {
 
   const addTag = (targetTag: Tag) => {
     setSelectedTags((tags) => {
-      return uniq([...tags, targetTag]);
+      return [...tags, targetTag];
     });
   };
 
