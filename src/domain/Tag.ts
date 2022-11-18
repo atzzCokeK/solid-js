@@ -25,4 +25,6 @@ export default class Tag {
   }
 
   toName = () => this.name;
+
+  isEqualTo = (tag: Tag): boolean => tag.toName() === this.toName();
 }
