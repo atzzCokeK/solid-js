@@ -9,12 +9,22 @@ const ArcadeStorePreviewList = (props: { arcadeStores: ArcadeStore[] }) => {
   const [selectedTags] = useSelectedTags();
 
   return (
-    <div class="flex flex-col divide-y bg-white p-10 rounded-lg">
-      <For each={filterByTags(props.arcadeStores, selectedTags)}>
-        {(arcadeStore) => {
-          return <ArcadeStorePreview arcadeStore={arcadeStore} />;
-        }}
-      </For>
+    <div>
+      <h2 class="mb-2">ゲーセン一覧</h2>
+      <div class="flex flex-col divide-y bg-white p-10 rounded-lg">
+        <For
+          each={filterByTags(props.arcadeStores, selectedTags)}
+          fallback={
+            <div class="text-center">
+              該当するゲーセンが見つかりませんでした😭
+            </div>
+          }
+        >
+          {(arcadeStore) => {
+            return <ArcadeStorePreview arcadeStore={arcadeStore} />;
+          }}
+        </For>
+      </div>
     </div>
   );
 };
