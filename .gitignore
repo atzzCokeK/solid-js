@@ -3,10 +3,10 @@ dist
 .output
 .vercel
 .netlify
-netlify
 
 # dependencies
 /node_modules
+yarn-error.log
 
 # IDEs and editors
 /.idea
