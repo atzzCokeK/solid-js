@@ -23,13 +23,16 @@ const SelectedTagsProvider: Component<{ children: JSX.Element }> = (props) => {
 
   const addTag = (targetTag: Tag) => {
     setSelectedTags((tags) => {
+      if (tags.some((tag) => tag.isEqualTo(targetTag))) {
+        return tags;
+      }
       return [...tags, targetTag];
     });
   };
 
   const removeTag = (targetTag: Tag) => {
     setSelectedTags((tags) => {
-      return [...tags].filter((tag) => tag.toName() !== targetTag.toName());
+      return [...tags].filter((tag) => !tag.isEqualTo(targetTag));
     });
   };
 
