@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     fontFamily: { sans: "Helvetica" },
     colors: {
+      primary: "#0CDC73",
       white: colors.white,
       gray: colors.gray,
     },
-    borderWidth: { 1: 1 },
   },
   extend: {
     colors: {
