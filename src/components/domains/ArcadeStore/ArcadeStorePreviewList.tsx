@@ -11,7 +11,7 @@ const ArcadeStorePreviewList = (props: { arcadeStores: ArcadeStore[] }) => {
   return (
     <div>
       <h2 class="mb-2">ゲーセン一覧</h2>
-      <div class="flex flex-col divide-y-1 bg-white p-10 rounded-lg">
+      <div class="flex flex-col divide-y bg-white p-10 rounded-lg">
         <For
           each={filterByTags(props.arcadeStores, selectedTags)}
           fallback={
