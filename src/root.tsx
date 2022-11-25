@@ -16,6 +16,8 @@ import {
 } from "solid-start";
 import "./root.css";
 import { SelectedTagsProvider } from "./context/selectedTags";
+import Header from "./components/Header";
+import { SolidNProgress } from "solid-progressbar";
 
 export default function Root() {
   return (
@@ -31,15 +33,10 @@ export default function Root() {
       </Head>
       <Body>
         <SelectedTagsProvider>
+          <SolidNProgress color="#0CDC73" />
+          <Header />
           <Suspense>
             <ErrorBoundary>
-              <header class="flex sticky top-0 items-center p-5">
-                <A href="/">
-                  <BiRegularGame />
-                </A>
-                <A href="/about">ゲーセンイキタイとは？</A>
-                <A href="/by-game-machine">Game Machine</A>
-              </header>
               <Routes>
                 <FileRoutes />
               </Routes>

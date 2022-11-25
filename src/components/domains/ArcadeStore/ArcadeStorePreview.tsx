@@ -21,7 +21,7 @@ const StorePreview = (props: { arcadeStore: ArcadeStore }) => {
 
   return (
     // TODO: ゆくゆくはaタグ
-    <div class="pb-3 pt-3">
+    <div class="pb-4 pt-4">
       <div class="flex justify-start w-full pb-5">
         <img
           class="w-1/5 rounded-lg"

@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <main>
       <Title>ゲーセンイキタイ</Title>
-      <h1 class="text-center font-bold text-[#0CDC73]">Favorite Arcades</h1>
+      <h1 class="text-center font-bold text-primary">Favorite Arcades</h1>
       <SelectedTags />
       <Show
         when={() => {
