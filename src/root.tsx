@@ -17,6 +17,7 @@ import {
 import "./root.css";
 import { SelectedTagsProvider } from "./context/selectedTags";
 import Header from "./components/Header";
+import { SolidNProgress } from "solid-progressbar";
 
 export default function Root() {
   return (
@@ -32,6 +33,7 @@ export default function Root() {
       </Head>
       <Body>
         <SelectedTagsProvider>
+          <SolidNProgress color="#0CDC73" />
           <Header />
           <Suspense>
             <ErrorBoundary>
