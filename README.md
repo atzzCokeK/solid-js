@@ -2,6 +2,7 @@ Coming soon...
 
 # Tech
 
-1. SolidJS
-2. TailwindCSS
-3. Vite
+- Typescript
+- SolidJS
+- TailwindCSS
+- Vite
