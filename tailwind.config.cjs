@@ -5,16 +5,14 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: { sans: "Helvetica" },
-    colors: {
-      primary: "#0CDC73",
-      white: colors.white,
-      gray: colors.gray,
+    extend: {
+      colors: {
+        primary: "#0CDC73",
+        secondary: "#243C54",
+        background: "#F8F9F9",
+      },
     },
   },
-  extend: {
-    colors: {
-      grey1: "#243c5a",
-    },
-  },
+
   plugins: [],
 };
