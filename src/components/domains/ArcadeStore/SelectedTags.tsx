@@ -11,8 +11,8 @@ const SelectedTags: Component<SelectedTagsProps> = (
 
   return (
     <div class={"mb-5"}>
-      <h2 class="mb-2">選択中のタグ</h2>
-      <div class="bg-white rounded-lg p-5">
+      <h2 class="mb-2">🌈 選択中のタグ</h2>
+      <div class="bg-white rounded-lg p-10">
         <Show
           when={selectedTags.length > 0}
           fallback={<div class={"text-[#6d7172]"}>なし</div>}

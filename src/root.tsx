@@ -23,7 +23,7 @@ export default function Root() {
   return (
     <Html lang="ja">
       <Head>
-        <Title>ゲーセンイキタイ</Title>
+        <Title>Glist</Title>
         <Meta charset="utf-8" />
         <Meta
           name="description"
@@ -31,17 +31,19 @@ export default function Root() {
         />
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Body>
+      <Body class="bg-grayBG">
         <SelectedTagsProvider>
           <SolidNProgress color="#0CDC73" />
           <Header />
-          <Suspense>
-            <ErrorBoundary>
-              <Routes>
-                <FileRoutes />
-              </Routes>
-            </ErrorBoundary>
-          </Suspense>
+          <main>
+            <Suspense>
+              <ErrorBoundary>
+                <Routes>
+                  <FileRoutes />
+                </Routes>
+              </ErrorBoundary>
+            </Suspense>
+          </main>
           <Scripts />
         </SelectedTagsProvider>
       </Body>
