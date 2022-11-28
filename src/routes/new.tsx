@@ -1,5 +1,6 @@
 import { Component, ComponentProps } from "solid-js";
 import Button from "~/components/uiParts/Button";
+import { prefectureNames } from "~/prefectures";
 
 interface newProps extends ComponentProps<any> {
   // add props here
@@ -25,6 +26,11 @@ const New: Component<newProps> = (props: newProps) => {
             <ul class="flex flex-col space-y-2">
               <Item labelName="施設名" />
               <Item labelName="電話番号" />
+              <Item labelName="郵便番号" />
+              <div>{prefectureNames}</div>
+              <Item labelName="都道府県" />
+              <Item labelName="住所1" />
+              <Item labelName="住所2" />
               <li>
                 <label class="mr-2 w-40 inline-block">タグ</label>
                 <select multiple class="border-2 border-gray-300 rounded-md">
