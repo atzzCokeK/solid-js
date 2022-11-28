@@ -19,7 +19,7 @@ const Header: Component = () => {
           classList={{
             "border-primary": location.pathname === "/",
             "border-white": location.pathname !== "/",
-            "pb-4 border-b-2": true,
+            "p-4 border-b-2": true,
           }}
         >
           ゲーセン一覧
@@ -29,10 +29,20 @@ const Header: Component = () => {
           classList={{
             "border-primary": location.pathname === "/about",
             "border-white": location.pathname !== "/about",
-            "pb-4 border-b-2": true,
+            "p-4 border-b-2": true,
           }}
         >
-          ゲーセンイキタイとは？
+          Glistとは？
+        </A>
+        <A
+          href="/new"
+          classList={{
+            "border-primary": location.pathname === "/new",
+            "border-white": location.pathname !== "/new",
+            "p-4 border-b-2": true,
+          }}
+        >
+          施設登録
         </A>
         {/* TODO: 一旦コメントアウト */}
         {/* <A
