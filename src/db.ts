@@ -1,17 +1,38 @@
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, addDoc } from "firebase/firestore";
 import { fireStore } from "./config/firebase";
 import ArcadeStore from "./domain/ArcadeStore";
+import Tag from "./domain/Tag";
 
-export class db {
-  constructor() {}
+const db = {
+  add: async (arcadeStore: ArcadeStore): Promise<void> => {
+    const arcadeStoreDto = {
+      name: arcadeStore.name,
+      phoneNumber: arcadeStore.phoneNumber,
+    };
 
-  // addArcadeStore(arcadeStore: ArcadeStore): Promise<void> {
-  //   return;
-  // }
+    const collections = collection(fireStore, "ArcadeStores");
+    try {
+      const docRef = await addDoc(collections, arcadeStoreDto);
+      console.log(docRef);
+    } catch (err) {
+      console.error(err);
+    }
+  },
 
-  // fetchTags(): Promise<Map<string, string>> {}
+  fetchAllTags: async (): Promise<Map<string, Tag>> => {
+    const collections = collection(fireStore, "Tags");
+    const tags = new Map();
+    try {
+      const snapShot = await getDocs(collections);
+      snapShot.docs.forEach((doc) => tags.set(doc.id, doc.data().name));
+    } catch (err) {
+      console.error(err);
+    }
 
-  fetch(): Promise<ArcadeStore[]> {
+    return tags;
+  },
+
+  fetchStores: (): Promise<ArcadeStore[]> => {
     return (async () =>
       (await getDocs(collection(fireStore, "ArcadeStores"))).docs
         .map((value) => value.data())
@@ -20,11 +41,17 @@ export class db {
             new ArcadeStore({
               name: doc.name,
               phoneNumber: doc.phoneNumber,
-              address: doc.address,
+              postalCode: doc.postalCode,
+              prefecture: doc.prefecture,
+              address1: doc.address1,
+              address2: doc.address2,
               updatedAt: doc.updatedAt.toDate(),
               // FIXME: 仮に入れている
               tagIds: [1, 2],
+              officialUrl: doc.officialUrl,
             })
         ))();
-  }
-}
+  },
+};
+
+export default db;
