@@ -31,7 +31,7 @@ export default function Root() {
         />
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Body class="bg-grayBG">
+      <Body class="bg-background">
         <SelectedTagsProvider>
           <SolidNProgress color="#0CDC73" />
           <Header />

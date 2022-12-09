@@ -1,43 +1,139 @@
-import { Component, ComponentProps } from "solid-js";
+import {
+  Component,
+  ComponentProps,
+  createResource,
+  JSXElement,
+} from "solid-js";
+import { createStore } from "solid-js/store";
 import Button from "~/components/uiParts/Button";
+import Input from "~/components/uiParts/Input";
+import Select from "~/components/uiParts/Select";
+import db from "~/db";
+import ArcadeStore from "~/domain/ArcadeStore";
+import PhoneNumber from "~/domain/PhoneNumber";
+import { prefectureNames } from "~/prefectures";
 
 interface newProps extends ComponentProps<any> {
   // add props here
 }
 
-const Item = (props: { labelName: string }) => {
+const Item = (props: { labelName: string; input: JSXElement }) => {
   return (
     <li>
-      <label class="mr-2 w-40 inline-block">{props.labelName}</label>
-      <input class="border-2 border-gray-300 rounded-md"></input>
+      <label class='mr-2 w-40 inline-block font-bold'>{props.labelName}</label>
+      {props.input}
     </li>
   );
 };
 
+type FieldData = {
+  storeName: string;
+  phoneNumber: string;
+  postalCode: string;
+  address1?: string;
+  address2?: string;
+  prefecture: string;
+  officialUrl?: string;
+};
+
 const New: Component<newProps> = (props: newProps) => {
+  const [storeInputData, setStoreInputData] = createStore<FieldData>({
+    storeName: "",
+    phoneNumber: "",
+    postalCode: "",
+    address1: "",
+    address2: "",
+    prefecture: "",
+    officialUrl: "",
+  });
+
+  const [tags] = createResource(() => db.fetchAllTags());
+
+  const onSubmit = async (event: Event) => {
+    const newArcadeStore = new ArcadeStore({
+      name: storeInputData.storeName,
+      phoneNumber: storeInputData.phoneNumber,
+      postalCode: storeInputData.postalCode,
+      prefecture: storeInputData.prefecture,
+      address1: storeInputData.address1 || "",
+      address2: storeInputData.address2 || "",
+      updatedAt: new Date(),
+      tagIds: [],
+      officialUrl: storeInputData.officialUrl || "",
+    });
+
+    await db.add(newArcadeStore);
+  };
+
+  const updateStoreInputData = (fieldName: string) => (event: Event) => {
+    const inputElement = event.currentTarget as HTMLInputElement;
+    setStoreInputData({ [fieldName]: inputElement.value });
+  };
+
   return (
     <>
       <div>
         <h1>ゲーセン登録</h1>
         <div>
           <h2>新規ゲーセン情報</h2>
-          <form class="bg-white rounded-lg p-5">
-            <ul class="flex flex-col space-y-2">
-              <Item labelName="施設名" />
-              <Item labelName="電話番号" />
-              <li>
-                <label class="mr-2 w-40 inline-block">タグ</label>
-                <select multiple class="border-2 border-gray-300 rounded-md">
-                  <option>hoge</option>
-                  <option>hoge</option>
-                  <option>hoge</option>
-                </select>
-              </li>
-              <div class="text-center">
-                <Button type="submit" text="送信" onClick={() => {}} />
+          <div class='bg-white rounded-lg p-5'>
+            <ul class='flex flex-col space-y-2'>
+              <Item
+                labelName='施設名'
+                input={<Input onChange={updateStoreInputData("storeName")} />}
+              />
+              <Item
+                labelName='電話番号'
+                input={<Input onChange={updateStoreInputData("phoneNumber")} />}
+              />
+              <Item
+                labelName='郵便番号'
+                input={<Input onChange={updateStoreInputData("postalCode")} />}
+              />
+              <Item
+                labelName='都道府県'
+                input={
+                  <Select
+                    options={prefectureNames()}
+                    onChange={updateStoreInputData("prefecture")}
+                  />
+                }
+              />
+              <Item
+                labelName='住所1'
+                input={<Input onChange={updateStoreInputData("address1")} />}
+              />
+              <Item
+                labelName='住所2'
+                input={<Input onChange={updateStoreInputData("address2")} />}
+              />
+              <Item
+                labelName='URL'
+                input={
+                  <Input
+                    inputMode='url'
+                    type='url'
+                  />
+                }
+              />
+              <Item
+                labelName='タグ'
+                input={
+                  <Select
+                    multiple={true}
+                    options={new Array(tags()?.values()) || []}
+                    onChange={updateStoreInputData("tags")}
+                  />
+                }
+              />
+              <div class='text-center'>
+                <Button
+                  onClick={onSubmit}
+                  text='送信'
+                />
               </div>
             </ul>
-          </form>
+          </div>
         </div>
       </div>
     </>

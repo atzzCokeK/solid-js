@@ -7,15 +7,15 @@ const Header: Component = () => {
 
   return (
     <>
-      <header class="flex items-center pt-5 pl-10 bg-white">
-        <A href="/">
+      <header class='flex items-center pt-5 pl-10 bg-white'>
+        <A href='/'>
           <BiRegularGame />
         </A>
       </header>
-      <nav class="font-bold flex items-center sticky pt-5 pl-10 top-0 border-b border-gray-200 bg-white">
+      <nav class='font-bold flex items-center sticky pt-5 pl-10 top-0 border-b border-gray-200 bg-white'>
         {/* TODO: これはコンポーネント化したい。 */}
         <A
-          href="/"
+          href='/'
           classList={{
             "border-primary": location.pathname === "/",
             "border-white": location.pathname !== "/",
@@ -25,7 +25,7 @@ const Header: Component = () => {
           ゲーセン一覧
         </A>
         <A
-          href="/about"
+          href='/about'
           classList={{
             "border-primary": location.pathname === "/about",
             "border-white": location.pathname !== "/about",
@@ -35,14 +35,14 @@ const Header: Component = () => {
           Glistとは？
         </A>
         <A
-          href="/new"
+          href='/new'
           classList={{
             "border-primary": location.pathname === "/new",
             "border-white": location.pathname !== "/new",
             "p-4 border-b-2": true,
           }}
         >
-          施設登録
+          ゲーセン登録
         </A>
         {/* TODO: 一旦コメントアウト */}
         {/* <A
