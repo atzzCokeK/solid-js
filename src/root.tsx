@@ -29,23 +29,26 @@ export default function Root() {
           name="description"
           content="Game Center Information built with Solid"
         />
-        <Meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
       </Head>
       <Body class="bg-background">
-        <SelectedTagsProvider>
-          <SolidNProgress color="#0CDC73" />
-          <Header />
-          <main>
-            <Suspense>
-              <ErrorBoundary>
-                <Routes>
+        <SolidNProgress color="#0CDC73" />
+        <Header />
+        <main>
+          <Suspense>
+            <ErrorBoundary>
+              <Routes>
+                <SelectedTagsProvider>
                   <FileRoutes />
-                </Routes>
-              </ErrorBoundary>
-            </Suspense>
-          </main>
-          <Scripts />
-        </SelectedTagsProvider>
+                </SelectedTagsProvider>
+              </Routes>
+            </ErrorBoundary>
+          </Suspense>
+        </main>
+        <Scripts />
       </Body>
     </Html>
   );
