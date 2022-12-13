@@ -7,7 +7,16 @@ const db = {
   add: async (arcadeStore: ArcadeStore): Promise<void> => {
     const arcadeStoreDto = {
       name: arcadeStore.name,
-      phoneNumber: arcadeStore.phoneNumber,
+      phoneNumber: arcadeStore.phoneNumber.toString(),
+      postalCode: arcadeStore.address.postalCode,
+      prefecture: arcadeStore.address.prefecture,
+      address1: arcadeStore.address.address1,
+      address2: arcadeStore.address.address2,
+      officialUrl: arcadeStore.officialUrl,
+      isPublic: false,
+      isClosed: false,
+      likes: 0,
+      updatedAt: new Date(),
     };
 
     const collections = collection(fireStore, "ArcadeStores");
