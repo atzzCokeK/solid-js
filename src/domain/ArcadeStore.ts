@@ -40,9 +40,7 @@ type Args = {
 export default class ArcadeStore {
   readonly name: string;
   readonly address: Address;
-  readonly postalCode: string;
   readonly phoneNumber: PhoneNumber;
-  readonly prefecture: string;
   readonly updatedAt: Date;
   readonly tags: Set<Tag>;
   readonly officialUrl: String;
@@ -60,8 +58,6 @@ export default class ArcadeStore {
   }: Args) {
     this.name = name;
     this.address = new Address({ postalCode, prefecture, address1, address2 });
-    this.postalCode = postalCode;
-    this.prefecture = prefecture;
     this.phoneNumber = new PhoneNumber(phoneNumber);
     this.updatedAt = updatedAt;
     this.tags = new Set(tagIds.map((tagId) => new Tag(tagId)));

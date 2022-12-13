@@ -83,7 +83,7 @@ const New: Component<newProps> = (props: newProps) => {
                 input={<Input onChange={updateStoreInputData("storeName")} />}
               />
               <Item
-                labelName='電話番号'
+                labelName='電話'
                 input={<Input onChange={updateStoreInputData("phoneNumber")} />}
               />
               <Item
@@ -111,6 +111,7 @@ const New: Component<newProps> = (props: newProps) => {
                 labelName='URL'
                 input={
                   <Input
+                    onChange={updateStoreInputData("officialUrl")}
                     inputMode='url'
                     type='url'
                   />

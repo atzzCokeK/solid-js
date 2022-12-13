@@ -7,8 +7,13 @@ interface SelectProps extends ComponentProps<"select"> {
 
 const Select: Component<SelectProps> = (props: SelectProps) => {
   return (
-    <select multiple={props.multiple}>
-      <For each={props.options}>{(option) => <option>{option}</option>}</For>
+    <select
+      multiple={props.multiple}
+      onChange={props.onChange}
+    >
+      <For each={props.options}>
+        {(option) => <option value={option}>{option}</option>}
+      </For>
     </select>
   );
 };
