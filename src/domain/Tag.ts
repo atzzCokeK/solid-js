@@ -3,6 +3,7 @@ export default class Tag {
   private readonly name: string;
 
   constructor(id: string, name: string) {
+    // 要不要判断つかず
     if (!id || !name) {
       throw new Error("Tag params is something wrong.");
     }
