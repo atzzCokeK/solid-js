@@ -1,39 +1,13 @@
+import Address from "./Address";
 import PhoneNumber from "./PhoneNumber";
 import Tag from "./Tag";
 
-class Address {
-  readonly postalCode: string;
-  readonly prefecture: string;
-  readonly address1: string;
-  readonly address2: string;
-
-  constructor({
-    postalCode,
-    prefecture,
-    address1,
-    address2,
-  }: {
-    postalCode: string;
-    prefecture: string;
-    address1: string;
-    address2: string;
-  }) {
-    this.postalCode = postalCode;
-    this.prefecture = prefecture;
-    this.address1 = address1;
-    this.address2 = address2;
-  }
-}
-
 type Args = {
   name: string;
-  phoneNumber: string;
-  postalCode: string;
-  prefecture: string;
-  address1: string;
-  address2: string;
+  phoneNumber: PhoneNumber;
+  address: Address;
   updatedAt: Date;
-  tagIds: number[];
+  tags: Tag[];
   officialUrl: string;
 };
 
@@ -48,19 +22,22 @@ export default class ArcadeStore {
   constructor({
     name,
     phoneNumber,
-    postalCode,
-    prefecture,
-    address1,
-    address2,
+    address,
     updatedAt,
-    tagIds,
+    tags,
     officialUrl,
   }: Args) {
     this.name = name;
-    this.address = new Address({ postalCode, prefecture, address1, address2 });
-    this.phoneNumber = new PhoneNumber(phoneNumber);
+    this.address = address;
+    this.phoneNumber = phoneNumber;
     this.updatedAt = updatedAt;
-    this.tags = new Set(tagIds.map((tagId) => new Tag(tagId)));
+    this.tags = new Set(tags);
     this.officialUrl = officialUrl;
   }
+}
+
+export interface IArcadeStoreRepository {
+  fetchAll(): Promise<ArcadeStore[]>;
+  // todo: Idを返す方がいいかも
+  add(arcadeStore: ArcadeStore): Promise<void>;
 }

@@ -4,10 +4,12 @@ import { Title } from "solid-start";
 import ArcadeStorePreviewList from "~/components/domains/ArcadeStore/ArcadeStorePreviewList";
 import SelectedTags from "~/components/domains/ArcadeStore/SelectedTags";
 import db from "~/db";
+import ArcadeStoreRepository from "~/repository/ArcadeStoreRepository";
 
 // WANT: SUSPENSE使えそう。これonnでも行けそうだな
 export default function Home() {
-  const [arcadeStores] = createResource(() => db.fetchStores());
+  const arcadeStoreRepository = new ArcadeStoreRepository();
+  const [arcadeStores] = createResource(() => arcadeStoreRepository.fetchAll());
 
   return (
     <main>

@@ -1,30 +1,20 @@
 export default class Tag {
+  private readonly id: string;
   private readonly name: string;
 
-  constructor(id: number) {
-    const tagName = this.fromTagId(id);
-
-    if (tagName === undefined) {
-      throw new Error("Tagname is something wrong.");
+  constructor(id: string, name: string) {
+    // 要不要判断つかず
+    if (!id || !name) {
+      throw new Error("Tag params is something wrong.");
     }
 
-    this.name = tagName;
-  }
-
-  private fromTagId(id: number) {
-    switch (id) {
-      case 1:
-        return "メダルゲーム";
-      case 2:
-        return "音ゲー";
-      case 3:
-        return "格ゲー";
-      default:
-        return undefined;
-    }
+    this.id = id;
+    this.name = name;
   }
 
   toName = () => this.name;
 
-  isEqualTo = (tag: Tag): boolean => tag.toName() === this.toName();
+  toId = () => this.id;
+
+  isEqualTo = (tag: Tag): boolean => tag.toId() === this.toId();
 }
