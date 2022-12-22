@@ -1,7 +1,5 @@
 import solid from "solid-start/vite";
 // @ts-ignore
-import netlify from "solid-start-netlify";
-// @ts-ignore
 import vercel from "solid-start-vercel";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
