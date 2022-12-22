@@ -1,9 +1,4 @@
-import {
-  Component,
-  ComponentProps,
-  createResource,
-  JSXElement,
-} from "solid-js";
+import { createResource, JSXElement } from "solid-js";
 import { createStore } from "solid-js/store";
 import Button from "~/components/uiParts/Button";
 import Input from "~/components/uiParts/Input";
@@ -12,12 +7,9 @@ import db from "~/db";
 import Address from "~/domain/Address";
 import ArcadeStore from "~/domain/ArcadeStore";
 import PhoneNumber from "~/domain/PhoneNumber";
+import Tags from "~/domain/Tags";
 import { prefectureNames } from "~/prefectures";
 import ArcadeStoreRepository from "~/repository/ArcadeStoreRepository";
-
-interface newProps extends ComponentProps<any> {
-  // add props here
-}
 
 const Item = (props: { labelName: string; input: JSXElement }) => {
   return (
@@ -36,9 +28,10 @@ type FieldData = {
   address2?: string;
   prefecture: string;
   officialUrl?: string;
+  tags: string[];
 };
 
-const New: Component<newProps> = (props: newProps) => {
+const New = () => {
   const arcadeStoreRepository = new ArcadeStoreRepository();
   const [storeInputData, setStoreInputData] = createStore<FieldData>({
     storeName: "",
@@ -48,11 +41,12 @@ const New: Component<newProps> = (props: newProps) => {
     address2: "",
     prefecture: "",
     officialUrl: "",
+    tags: [],
   });
 
   const [tags] = createResource(() => db.fetchAllTags());
 
-  const onSubmit = async (_: Event) => {
+  const onSubmit = async () => {
     const newArcadeStore = new ArcadeStore({
       name: storeInputData.storeName,
       phoneNumber: new PhoneNumber(storeInputData.phoneNumber),
@@ -63,7 +57,8 @@ const New: Component<newProps> = (props: newProps) => {
         address2: storeInputData.address2 || "",
       }),
       updatedAt: new Date(),
-      tags: tags() || [],
+      // TODO: ここ修正
+      tags: new Tags([]),
       officialUrl: storeInputData.officialUrl || "",
     });
 

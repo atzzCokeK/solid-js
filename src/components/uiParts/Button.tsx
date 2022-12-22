@@ -1,4 +1,4 @@
-import { Component, ComponentProps } from "solid-js";
+import { Component, ComponentProps, createMemo, mergeProps } from "solid-js";
 
 type ButtonColor = "Primary" | "Secondary";
 
@@ -8,15 +8,17 @@ interface ButtonProps extends ComponentProps<"button"> {
 }
 
 const Button: Component<ButtonProps> = (props: ButtonProps) => {
-  const color = props.color ? props.color : "Primary";
+  const merged = mergeProps({ color: "Primary" }, props);
+  const onSubmitHandler = createMemo(() => props.onSubmit);
+  const onClickHandler = createMemo(() => props.onClick);
 
   return (
     <button
       type={props.type}
-      onSubmit={props.onSubmit}
-      onClick={props.onClick}
+      onSubmit={onSubmitHandler}
+      onClick={onClickHandler}
       class="text-white rounded-lg w-32 p-1"
-      classList={{ "bg-primary": color === "Primary" }}
+      classList={{ "bg-primary": merged.color === "Primary" }}
     >
       {props.text}
     </button>

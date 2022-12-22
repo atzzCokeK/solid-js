@@ -3,12 +3,12 @@ import solid from "solid-start/vite";
 import vercel from "solid-start-vercel";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
-
 export default defineConfig({
   plugins: [
     solid({ ssr: false, adapter: vercel({ edge: false }) }),
     checker({
-      typescript: true,
+      // TODO: いちさんに聞いてみる
+      // typescript: true,
       eslint: { lintCommand: "eslint --ext .tsx,.ts src/" },
     }),
   ],

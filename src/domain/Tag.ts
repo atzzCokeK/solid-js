@@ -17,4 +17,6 @@ export default class Tag {
   toId = () => this.id;
 
   isEqualTo = (tag: Tag): boolean => tag.toId() === this.toId();
+
+  isEqualToById = (id: string): boolean => id === this.toId();
 }

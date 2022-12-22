@@ -1,9 +1,7 @@
 // @refresh reload
 import { Suspense } from "solid-js";
-import { BiRegularGame } from "solid-icons/bi";
 
 import {
-  A,
   Body,
   ErrorBoundary,
   FileRoutes,

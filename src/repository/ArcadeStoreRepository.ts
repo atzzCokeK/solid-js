@@ -1,7 +1,9 @@
 import { addDoc, collection, getDocs } from "firebase/firestore";
+import Address from "~/domain/Address";
 import ArcadeStore, { IArcadeStoreRepository } from "~/domain/ArcadeStore";
 import PhoneNumber from "~/domain/PhoneNumber";
 import Tag from "~/domain/Tag";
+import Tags from "~/domain/Tags";
 import { fireStore } from "../config/firebase";
 
 export default class ArcadeStoreRepository implements IArcadeStoreRepository {
@@ -9,10 +11,10 @@ export default class ArcadeStoreRepository implements IArcadeStoreRepository {
     const arcadeStoreDto = {
       name: arcadeStore.name,
       phoneNumber: arcadeStore.phoneNumber.toString(),
-      postalCode: arcadeStore.address.postalCode,
-      prefecture: arcadeStore.address.prefecture,
-      address1: arcadeStore.address.address1,
-      address2: arcadeStore.address.address2,
+      postalCode: arcadeStore.address.getPostalCode(),
+      prefecture: arcadeStore.address.getPrefecture(),
+      address1: arcadeStore.address.getAddress1(),
+      address2: arcadeStore.address.getAddress2(),
       officialUrl: arcadeStore.officialUrl,
       isPublic: false,
       isClosed: false,
@@ -50,9 +52,14 @@ export default class ArcadeStoreRepository implements IArcadeStoreRepository {
           return new ArcadeStore({
             name: doc.name,
             phoneNumber: new PhoneNumber(doc.phoneNumber),
-            address: doc.address1,
+            address: new Address({
+              postalCode: doc.postalCode,
+              prefecture: doc.prefecture,
+              address1: doc.address1,
+              address2: doc.address2,
+            }),
             updatedAt: doc.updatedAt.toDate(),
-            tags: tags,
+            tags: new Tags(tags),
             officialUrl: doc.officialUrl,
           });
         }))();

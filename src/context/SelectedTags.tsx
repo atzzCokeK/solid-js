@@ -1,6 +1,6 @@
 import { createContext, JSX, useContext } from "solid-js";
 import { Component } from "solid-js";
-import { createStore, Store } from "solid-js/store";
+import { createStore } from "solid-js/store";
 import Tag from "~/domain/Tag";
 
 //  TODO: Setのやつ試してみる

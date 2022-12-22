@@ -1,8 +1,8 @@
 export default class Address {
-  readonly postalCode: string;
-  readonly prefecture: string;
-  readonly address1: string;
-  readonly address2: string;
+  private readonly postalCode: string;
+  private readonly prefecture: string;
+  private readonly address1: string;
+  private readonly address2: string;
 
   constructor({
     postalCode,
@@ -19,5 +19,21 @@ export default class Address {
     this.prefecture = prefecture;
     this.address1 = address1;
     this.address2 = address2;
+  }
+  getPostalCode() {
+    return this.postalCode;
+  }
+  getPrefecture() {
+    return this.prefecture;
+  }
+  getAddress1() {
+    return this.address1;
+  }
+  getAddress2() {
+    return this.address2;
+  }
+
+  toString() {
+    return this.postalCode + this.prefecture + this.address1 + this.address2;
   }
 }
