@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [
     solid({ ssr: false, adapter: vercel({ edge: false }) }),
     checker({
-      eslint: { lintCommand: 'eslint "./src/**/*.{ts,tsx}"' },
+      typescript: true,
+      eslint: { lintCommand: "eslint --ext .tsx,.ts src/" },
     }),
   ],
 });

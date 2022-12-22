@@ -1,23 +1,22 @@
 import { Index } from "solid-js";
 import ArcadeStore from "~/domain/ArcadeStore";
-import Tag from "~/domain/Tag";
 import Address from "./Address";
 import TagView from "./TagView";
 import UpdatedDate from "./UpdatedDate";
 
 const StorePreview = (props: { arcadeStore: ArcadeStore }) => {
-  const mockCategories = [
-    "メダル",
-    "UFOキャッチャー",
-    "🎰スロット",
-    "パチンコ",
-    "🀄麻雀",
-    "♫音ゲー",
-    "👨格ゲー",
-    "🐎競馬",
-    "🎳ボウリング",
-    "⚾バッティングセンター",
-  ];
+  // const mockCategories = [
+  //   "⚫メダル",
+  //   "🐫UFOキャッチャー",
+  //   "🎰スロット",
+  //   "パチンコ",
+  //   "🀄麻雀",
+  //   "♫音ゲー",
+  //   "👨格ゲー",
+  //   "🐎競馬",
+  //   "🎳ボウリング",
+  //   "⚾バッティングセンター",
+  // ];
 
   return (
     // TODO: ゆくゆくはaタグ
@@ -30,12 +29,15 @@ const StorePreview = (props: { arcadeStore: ArcadeStore }) => {
         <div class="flex flex-col justify-start ml-5 space-y-2">
           <div>{props.arcadeStore.name}</div>
           <div class="text-xs text-[#6d7172] hover:opacity-60 transition-opacity">
-            <Address address={props.arcadeStore.address}></Address>
+            <Address address={props.arcadeStore.address.toString()} />
           </div>
           <ul class="flex list-none space-x-2 w-full flex-wrap">
-            <Index each={[1, 2, 3]}>
-              {(category) => (
-                <TagView tag={new Tag(category())} method={"ADD"} />
+            <Index each={props.arcadeStore.tags.toArray()}>
+              {(tag) => (
+                <TagView
+                  tag={tag()}
+                  method={"ADD"}
+                />
               )}
             </Index>
           </ul>

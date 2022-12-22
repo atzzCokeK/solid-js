@@ -1,13 +1,13 @@
 import Address from "./Address";
 import PhoneNumber from "./PhoneNumber";
-import Tag from "./Tag";
+import Tags from "./Tags";
 
 type Args = {
   name: string;
   phoneNumber: PhoneNumber;
   address: Address;
   updatedAt: Date;
-  tags: Tag[];
+  tags: Tags;
   officialUrl: string;
 };
 
@@ -16,7 +16,7 @@ export default class ArcadeStore {
   readonly address: Address;
   readonly phoneNumber: PhoneNumber;
   readonly updatedAt: Date;
-  readonly tags: Set<Tag>;
+  readonly tags: Tags;
   readonly officialUrl: String;
 
   constructor({
@@ -31,7 +31,7 @@ export default class ArcadeStore {
     this.address = address;
     this.phoneNumber = phoneNumber;
     this.updatedAt = updatedAt;
-    this.tags = new Set(tags);
+    this.tags = tags;
     this.officialUrl = officialUrl;
   }
 }

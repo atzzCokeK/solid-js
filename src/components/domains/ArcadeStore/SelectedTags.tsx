@@ -2,11 +2,7 @@ import { Component, For, Show } from "solid-js";
 import { useSelectedTags } from "~/context/selectedTags";
 import TagView from "./TagView";
 
-interface SelectedTagsProps {}
-
-const SelectedTags: Component<SelectedTagsProps> = (
-  props: SelectedTagsProps
-) => {
+const SelectedTags: Component = () => {
   const [selectedTags] = useSelectedTags();
 
   return (
@@ -20,7 +16,12 @@ const SelectedTags: Component<SelectedTagsProps> = (
           <div class={"flex space-x-2 w-full flex-wrap"}>
             <For each={selectedTags}>
               {(tag) => {
-                return <TagView tag={tag} method={"REMOVE"}></TagView>;
+                return (
+                  <TagView
+                    tag={tag}
+                    method={"REMOVE"}
+                  />
+                );
               }}
             </For>
           </div>
