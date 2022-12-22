@@ -1,5 +1,3 @@
-import { Title } from "solid-start";
-
 const About = () => {
   return (
     <>

@@ -1,6 +1,5 @@
-import { getDocs, collection, addDoc, where, query } from "firebase/firestore";
+import { getDocs, collection, where, query } from "firebase/firestore";
 import { fireStore } from "./config/firebase";
-import ArcadeStore from "./domain/ArcadeStore";
 import Tag from "./domain/Tag";
 
 const db = {

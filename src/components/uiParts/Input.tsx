@@ -9,7 +9,7 @@ const Input: Component<InputProps> = (props: InputProps) => {
     <input
       class="border-2 border-gray-300 rounded-md bg=white"
       {...props}
-    ></input>
+     />
   );
 };
 

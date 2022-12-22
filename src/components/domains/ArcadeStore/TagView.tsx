@@ -1,4 +1,4 @@
-import { Component, ComponentProps } from "solid-js";
+import { Component } from "solid-js";
 import { useSelectedTags } from "~/context/selectedTags";
 import Tag from "~/domain/Tag";
 
