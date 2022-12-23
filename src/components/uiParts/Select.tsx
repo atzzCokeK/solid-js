@@ -1,20 +1,19 @@
-import { Component, ComponentProps, createMemo, For } from "solid-js";
+import { Component, ComponentProps, For } from "solid-js";
 
 interface SelectProps extends ComponentProps<"select"> {
-  // add props here
-  options: any[] | undefined;
+  options: { value: string; name: string }[] | undefined;
 }
 
 const Select: Component<SelectProps> = (props: SelectProps) => {
-  const onChangeHandler = createMemo(() => props.onChange);
-
   return (
     <select
       multiple={props.multiple}
-      onChange={onChangeHandler}
+      onChange={(e) => {
+        if (typeof props.onChange === "function") props.onChange(e);
+      }}
     >
       <For each={props.options}>
-        {(option) => <option value={option}>{option}</option>}
+        {(option) => <option value={option.value}>{option.name}</option>}
       </For>
     </select>
   );
