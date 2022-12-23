@@ -70,6 +70,11 @@ const New = () => {
     setStoreInputData({ [fieldName]: inputElement.value });
   };
 
+  const updateTags = (selectedTags: string[]) => (event: Event) => {
+    const inputElement = event.currentTarget as HTMLInputElement;
+    setStoreInputData({ tags: [...selectedTags, inputElement.value] });
+  };
+
   return (
     <>
       <div>
@@ -94,7 +99,10 @@ const New = () => {
                 labelName="都道府県"
                 input={
                   <Select
-                    options={prefectureNames()}
+                    options={prefectureNames().map((prefectureName) => ({
+                      name: prefectureName,
+                      value: prefectureName,
+                    }))}
                     onChange={updateStoreInputData("prefecture")}
                   />
                 }
@@ -122,8 +130,11 @@ const New = () => {
                 input={
                   <Select
                     multiple={true}
-                    options={tags()?.map((tag) => tag.toName())}
-                    onChange={updateStoreInputData("tags")}
+                    options={tags()?.map((tag) => ({
+                      name: tag.toName(),
+                      value: tag.toId(),
+                    }))}
+                    onChange={updateTags(storeInputData.tags)}
                   />
                 }
               />
