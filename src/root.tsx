@@ -38,11 +38,11 @@ export default function Root() {
         <main>
           <Suspense>
             <ErrorBoundary>
-              <Routes>
-                <SelectedTagsProvider>
+              <SelectedTagsProvider>
+                <Routes>
                   <FileRoutes />
-                </SelectedTagsProvider>
-              </Routes>
+                </Routes>
+              </SelectedTagsProvider>
             </ErrorBoundary>
           </Suspense>
         </main>
